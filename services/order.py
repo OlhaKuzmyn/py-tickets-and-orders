@@ -14,7 +14,7 @@ def create_order(
         date: datetime.date = None,
 ) -> Order:
     order = Order.objects.create(
-        user = get_user_model().objects.get(username=username),
+        user=get_user_model().objects.get(username=username),
     )
     if date:
         order.created_at = date
@@ -23,7 +23,9 @@ def create_order(
             Ticket(
                 row=ticket["row"],
                 seat=ticket["seat"],
-                movie_session=MovieSession.objects.get(pk=ticket["movie_session"]),
+                movie_session=MovieSession.objects.get(
+                    pk=ticket["movie_session"]
+                ),
                 order=order
             )
             for ticket in tickets

@@ -45,6 +45,11 @@ def delete_movie_session_by_id(session_id: int) -> None:
 
 
 def get_taken_seats(movie_session_id: int) -> list[dict]:
-    for movie_session in MovieSession.objects.filter(pk=movie_session_id).prefetch_related("tickets"):
-        row_seat = [(ticket.row, ticket.seat) for ticket in movie_session.tickets.all()]
+    for movie_session in MovieSession.objects.filter(
+            pk=movie_session_id
+    ).prefetch_related("tickets"):
+        row_seat = [
+            (ticket.row, ticket.seat)
+            for ticket in movie_session.tickets.all()
+        ]
         return [{"row": row, "seat": seat} for row, seat in row_seat]
