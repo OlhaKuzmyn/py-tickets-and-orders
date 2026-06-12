@@ -11,7 +11,7 @@ from db.models import Ticket, Order, MovieSession
 def create_order(
         tickets: list[dict],
         username: str,
-        date: datetime.date = None,
+        date: datetime.datetime = None,
 ) -> Order:
     order = Order.objects.create(
         user=get_user_model().objects.get(username=username),
