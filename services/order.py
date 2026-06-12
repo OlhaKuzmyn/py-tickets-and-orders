@@ -31,6 +31,7 @@ def create_order(
             for ticket in tickets
         ]
     )
+    order.save()
     return order
 
 
